@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volumetest
+spec:
+  containers:
+    - name: volumetest
+      image: itzsaravana/volumetest:latest
+      tty: true
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: myvalume
+          mountPath: /app/myvalumemountpath
+  restartPolicy: Never
+  volumes:
+    - name: myvalume
+      persistentVolumeClaim:
+        claimName: myvalume
